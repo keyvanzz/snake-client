@@ -3,7 +3,7 @@ const PORT = 50541;
 const MOVE_UP_KEY = "Move: up";
 const MOVE_RIGHT_KEY = "Move: right";
 const MOVE_DOWN_KEY = "Move: down";
-const MOVE_LEFT_KEY = "Move:left";
+const MOVE_LEFT_KEY = "Move: left";
 const NAME = "Name: k1z";
 module.exports = {
     IP,
