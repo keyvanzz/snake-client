@@ -1,3 +1,10 @@
+const { IP,
+    PORT,
+    MOVE_UP_KEY,
+    MOVE_RIGHT_KEY,
+    MOVE_DOWN_KEY,
+    MOVE_LEFT_KEY,
+    NAME } = require(`./constants`)
 /**
  * Setup User Interface 
  * Specifically, so that we can handle user input via stdin
@@ -9,26 +16,32 @@ const setupInput = function (conn) {
     stdin.setRawMode(true);
     stdin.setEncoding('utf8');
     stdin.resume();
-    const handleUserInput = stdin.on('data', (key) => {
+    stdin.on('data', (data) => { handleUserInput(data) });
+    return stdin;
+}
+const handleUserInput = function () {
+    process.stdin.on('data', (key) => {
         if (key === '\u0003') {
             console.log(`Terminal session closed`)
             process.exit();
         }
         if (key === 'w') {
-            conn.write('Move: up')
+            connection.write(MOVE_UP_KEY)
         }
         if (key === 'a') {
-            conn.write('Move: left')
+            connection.write(MOVE_LEFT_KEY)
         }
         if (key === 's') {
-            conn.write('Move: down')
+            connection.write(MOVE_DOWN_KEY)
         }
         if (key === 'd') {
-            conn.write('Move: right')
+            connection.write(MOVE_RIGHT_KEY)
         }
-    }); return stdin;
-}
-
+        if (key === "f") {
+            connection.write("Say: :-)")
+        }
+    })
+};
 module.exports = {
     setupInput
 };
